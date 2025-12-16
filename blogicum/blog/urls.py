@@ -1,32 +1,66 @@
 from django.urls import path
+
 from . import views
 
+# Пространство имен для приложения blog
+app_name = "blog"
 
-app_name = 'blog'
-
+# Список URL-маршрутов для приложения blog
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('profile/<str:username>/', views.profile, name='profile'),    
-    path('posts/create/', views.post_create, name='create_post'),
-    path('posts/<int:post_id>/', views.post_detail, name='post_detail'),
-    path('posts/<int:post_id>/edit/', views.post_edit, name='edit_post'),
-    path('posts/<int:post_id>/delete/', views.post_delete, name='delete_post'),
+    # Главная страница - список всех опубликованных постов
+    path("", views.PostListView.as_view(), name="index"),
+    # Редактирование профиля пользователя
     path(
-        'posts/<int:post_id>/comment/',
-        views.add_comment,
-        name='add_comment'
+        "profile/edit/", views.ProfileUpdateView.as_view(), name="edit_profile"
     ),
+    # Страница профиля пользователя с его постами
     path(
-        'posts/<int:post_id>/edit_comment/<int:comment_id>/',
-        views.edit_comment,
-        name='edit_comment'
+        "profile/<slug:username>/",
+        views.ProfileListView.as_view(),
+        name="profile",
     ),
+    # Создание нового поста
+    path("posts/create/", views.PostCreateView.as_view(), name="create_post"),
+    # Просмотр детальной информации о посте
     path(
-        'posts/<int:post_id>/delete_comment/<int:comment_id>/',
-        views.delete_comment,
-        name='delete_comment'
+        "posts/<int:post_id>/",
+        views.PostDetailView.as_view(),
+        name="post_detail",
     ),
-    path('category/<slug:category_slug>/',
-         views.category_posts, name='category_posts'),
-    path('edit/', views.profile_edit, name='profile_edit'),
+    # Редактирование поста (только для автора)
+    path(
+        "posts/<int:post_id>/edit/",
+        views.PostUpdateView.as_view(),
+        name="edit_post",
+    ),
+    # Удаление поста (только для автора)
+    path(
+        "posts/<int:post_id>/delete/",
+        views.PostDeleteView.as_view(),
+        name="delete_post",
+    ),
+    # Добавление комментария к посту
+    path(
+        "posts/<int:post_id>/comment/",
+        views.CommentCreateView.as_view(),
+        name="add_comment",
+    ),
+    # Редактирование комментария (только для автора)
+    path(
+        "posts/<int:post_id>/edit_comment/<int:comment_id>/",
+        views.CommentUpdateView.as_view(),
+        name="edit_comment",
+    ),
+    # Удаление комментария (только для автора)
+    path(
+        "posts/<int:post_id>/delete_comment/<int:comment_id>/",
+        views.CommentDeleteView.as_view(),
+        name="delete_comment",
+    ),
+    # Список постов по категории
+    path(
+        "category/<slug:category_slug>/",
+        views.CategoryListlView.as_view(),
+        name="category_posts",
+    ),
 ]

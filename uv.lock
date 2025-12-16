@@ -68,6 +68,19 @@ wheels = [
 ]
 
 [[package]]
+name = "django-debug-toolbar"
+version = "4.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "sqlparse" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/61/ff/b6d3cc2c31f9a6cf68eda0f7a640ada743f5c39122a0c14db8d3eee3f412/django_debug_toolbar-4.3.0.tar.gz", hash = "sha256:0b0dddee5ea29b9cb678593bc0d7a6d76b21d7799cb68e091a2148341a80f3c4", size = 261173, upload-time = "2024-02-01T19:36:52.509Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ee/0e/73d81b1dfd9a84f24e3869019309758b37a5a5a9fe2bc7e54fca08191ea0/django_debug_toolbar-4.3.0-py3-none-any.whl", hash = "sha256:e09b7dcb8417b743234dfc57c95a7c1d1d87a88844abd13b4c5387f807b31bf6", size = 223656, upload-time = "2024-02-01T19:37:22.036Z" },
+]
+
+[[package]]
 name = "django-sprint4"
 version = "0.1.0"
 source = { virtual = "." }
@@ -77,6 +90,7 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "django" },
     { name = "django-bootstrap5" },
+    { name = "django-debug-toolbar" },
     { name = "faker" },
     { name = "flake8" },
     { name = "flake8-docstrings" },
@@ -108,6 +122,7 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = "==4.11.2" },
     { name = "django", specifier = "==3.2.16" },
     { name = "django-bootstrap5", specifier = "==22.2" },
+    { name = "django-debug-toolbar", specifier = ">=4.3.0" },
     { name = "faker", specifier = "==12.0.1" },
     { name = "flake8", specifier = "==5.0.4" },
     { name = "flake8-docstrings", specifier = "==1.7.0" },

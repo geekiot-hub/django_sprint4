@@ -22,8 +22,7 @@
         {% endif %}
       </div>
       <div class="card-body">
-        <form method="post" enctype="multipart/form-data"
-              action="{% if is_edit %}{% url 'blog:edit_post' post.id %}{% else %}{% url 'blog:create_post' %}{% endif %}">
+        <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% if not '/delete/' in request.path %}
             {% bootstrap_form form %}
