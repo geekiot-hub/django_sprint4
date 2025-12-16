@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Профиль пользователя {{ author.username }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-5 text-center ">Страница пользователя {{ author.username }}</h1>
+  
+  <ul class="list-group list-group-horizontal-md justify-content-center mb-3">
+    <li class="list-group-item text-muted">
+      Имя: {% if author.get_full_name %}{{ author.get_full_name }}{% else %}не указано{% endif %}
+    </li>
+    <li class="list-group-item text-muted">
+      Дата регистрации: {{ author.date_joined|date:"d M Y" }}
+    </li>
+    <li class="list-group-item text-muted">
+      Всего публикаций: {{ author.post_set.count }}
+    </li>
+  </ul>
+  
+  {% if user.is_authenticated and user == author %}
+    <div class="text-center mb-3">
+      <a class="btn btn-primary" href="{% url 'blog:profile_edit' %}">
+        Редактировать профиль
+      </a>
+      <a class="btn btn-secondary" href="{% url 'password_change' %}">
+        Изменить пароль
+      </a>
+    </div>
+  {% endif %}
+  
+  <hr>
+  <h3 class="my-5 text-center">Публикации пользователя</h3>
+  
+  {% for post in page_obj %}
+    <article class="mb-5">
+      {% include "includes/post_card.html" %}
+    </article>
+  {% endfor %}
+  
+  {% include "includes/paginator.html" %}
+{% endblock %}
