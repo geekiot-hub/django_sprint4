@@ -177,9 +177,7 @@ class CategoryListlView(PostListView):
 
     def get_queryset(self):
         # Фильтруем посты по выбранной категории
-        queryset = (
-            super().get_queryset().filter(category__slug=self.category.slug)
-        )
+        queryset = super().get_queryset().filter(category__slug=self.category.slug)
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -284,17 +282,13 @@ class CommentMixin:
         )
 
 
-class CommentUpdateView(
-    LoginRequiredMixin, IsAuthorMixin, CommentMixin, UpdateView
-):
+class CommentUpdateView(LoginRequiredMixin, IsAuthorMixin, CommentMixin, UpdateView):
     """Представление для редактирования комментария (только для автора)"""
 
     pass
 
 
-class CommentDeleteView(
-    LoginRequiredMixin, IsAuthorMixin, CommentMixin, DeleteView
-):
+class CommentDeleteView(LoginRequiredMixin, IsAuthorMixin, CommentMixin, DeleteView):
     """Представление для удаления комментария (только для автора)"""
 
     pass

@@ -10,9 +10,7 @@ urlpatterns = [
     # Главная страница - список всех опубликованных постов
     path("", views.PostListView.as_view(), name="index"),
     # Редактирование профиля пользователя
-    path(
-        "profile/edit/", views.ProfileUpdateView.as_view(), name="edit_profile"
-    ),
+    path("profile/edit/", views.ProfileUpdateView.as_view(), name="edit_profile"),
     # Страница профиля пользователя с его постами
     path(
         "profile/<slug:username>/",

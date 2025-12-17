@@ -6,8 +6,8 @@ class PublishedModel(models.Model):
 
     is_published = models.BooleanField(
         default=True,
-        verbose_name='Опубликовано',
-        help_text='Снимите галочку, чтобы скрыть публикацию.',
+        verbose_name="Опубликовано",
+        help_text="Снимите галочку, чтобы скрыть публикацию.",
     )
 
     class Meta:
@@ -19,12 +19,12 @@ class CreatedModel(models.Model):
 
     created_at = models.DateTimeField(
         auto_now_add=True,
-        verbose_name='Добавлено',
+        verbose_name="Добавлено",
     )
 
     class Meta:
         abstract = True
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
 
 class BaseModel(PublishedModel, CreatedModel):
